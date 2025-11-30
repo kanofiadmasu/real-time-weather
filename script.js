@@ -1,15 +1,20 @@
 // Add a valid API key and Base URL to make this web-app functional
 
+// Importing Storage Services functionality form storage.js
+import StorageServices from './storage.js'
+
+const storageService = new StorageServices();
+
 const form = document.getElementById("input-form");
 const cityInput = document.getElementById("city-input");
-const dynamicSection = document.querySelector(".dynamic-section");
 const saveButton = document.getElementById("fav-city-button");
 const themeButton = document.getElementById("night-mode-button");
+const showFavButton = document.getElementById("show-fav-city")
 const body = document.body;
 const tempElement = document.getElementById("temprature");
 const descElement = document.getElementById("weather-description");
 const iconElement = document.getElementById("icon");
-const city = document.getElementById("city");
+const cityElement = document.getElementById("city");
 const apiKey = "" // Add API key here 
 
 // Checking for theme Preference
@@ -43,10 +48,11 @@ themeButton.addEventListener("click", () => {
     }
 });
 
+// Form handling
 form.addEventListener("submit", async event => {
     event.preventDefault();
 
-    const city = cityInput.value; 
+    const city = cityInput.value.trim(); 
     clearError();
 
     if(city) {
@@ -56,7 +62,7 @@ form.addEventListener("submit", async event => {
         }
         catch(error) {
             console.error(error.message)
-            showError(error);
+            showError(error.message);
         }
     } 
     else {
@@ -92,7 +98,6 @@ async function getWeather(city) {
 };
 
 function displayWeather(data) {
-
 // Access weather data
     const cityName = data.name
 
@@ -102,9 +107,10 @@ function displayWeather(data) {
     const weatherId = data.weather[0].id
 
     tempElement.textContent = `${mainTemp}℃`;
-    city.textContent = cityName;
+    cityElement.textContent = cityName;
     descElement.textContent = description;
     iconElement.textContent = emojiAssignment(weatherId);
+
 }
 
 function emojiAssignment(weatherId) {
@@ -127,4 +133,21 @@ function emojiAssignment(weatherId) {
         return '❓';
     }
 };
+
+// Storage Services
+saveButton.addEventListener("click", () => {
+    
+    const currentCity = cityElement.textContent.trim();
+
+    if(currentCity) {
+        storageService.saveFavorite(currentCity);
+    }
+}); 
+
+//Displaying the saved cities
+
+showFavButton.addEventListener("click", () => {
+
+});
+
 

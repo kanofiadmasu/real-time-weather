@@ -48,9 +48,32 @@ body.dark-theme {
     font-size: 15px;
 }
 
+.fav-container {
+    border: 1px solid red;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    align-items: start;
+    gap: 10px;
+    padding: 10px;
+}
+.fav-city-piece {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid blue;
+    border-radius: 5px;
+    height: 40px;
+    background: white;
+}
+.fav-city-piece p {
+    margin: 6px;
+}
+
 #submit-button, 
 #fav-city-button,
-#night-mode-button {
+#night-mode-button,
+#show-fav-city,
+#remove-fav-city {
     border: 1px solid blue;
     border-radius: 5px;
     height: 40px;

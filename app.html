@@ -3,7 +3,7 @@
 <head>
     <title>Real Time Weather Dashboard</title>
     <linK rel="stylesheet" href="app.css">
-    <script src="script.js" defer></script>
+    <script src="script.js" defer type="module"></script>
 </head>
 <body>
     <div class="main-container">
@@ -16,6 +16,7 @@
             <p id="error-message" style="color: red;"></p>
         </div>
 
+        <!-- Weather information display -->
         <div class="dynamic-section"> 
             <p id="error-message" style="display: none"></p>
             <p id="city"></p>
@@ -23,9 +24,20 @@
             <p id="temprature"></p>
             <p id="icon"></p>
         </div>
+        <!-- Favourite Cities display -->
+        <div class="fav-container" style="display: none">
+            <!-- <div class="fav-city-piece"> 
+                <p id="fav-city-palce"></p>
+                <button id="remove-fav-city" type="button">Remove</button>
+            </div> -->
 
+            
+        </div>
+
+        <!-- Functional-buttons at the end -->
         <div class="functional-buttons">
-            <button id="fav-city-button" type="button">Save Favourite City</button>
+            <button id="show-fav-city" type="button">Show Favorite Cities</button>
+            <button id="fav-city-button" type="button">Save As Favorite</button>
             <button id="night-mode-button" type="button">Dark Mode 🌙</button>
         </div>
     </div>
