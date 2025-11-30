@@ -10,7 +10,7 @@ const tempElement = document.getElementById("temprature");
 const descElement = document.getElementById("weather-description");
 const iconElement = document.getElementById("icon");
 const city = document.getElementById("city");
-const apiKey = "362ca154ca2ba88b090edbf69c89e4f1" // Add API key here
+const apiKey = "" // Add API key here 
 
 // Checking for theme Preference
 const savedTheme = localStorage.getItem('theme');
@@ -78,15 +78,10 @@ function clearError() {
 }
 
 async function getWeather(city) {
-<<<<<<< HEAD
-    const apiUrl = ``;
-=======
     // Add base URL here
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
->>>>>>> 19c29a2 (added a theme toggle functionality)
+    const apiUrl = ``;
 
     const response = await fetch(apiUrl);
-
 
     if(!response.ok) {
         throw new Error(`Weather data not available for ${city}.`)
@@ -115,6 +110,7 @@ function displayWeather(data) {
 function emojiAssignment(weatherId) {
 
     const id = weatherId; 
+    
     if (id >= 200 && id < 300) {
         return '⛈️'; 
     } else if (id >= 300 && id < 600) { 
@@ -131,5 +127,4 @@ function emojiAssignment(weatherId) {
         return '❓';
     }
 };
-
 
