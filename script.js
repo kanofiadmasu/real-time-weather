@@ -1,14 +1,98 @@
-// Things we will add on js
-// 1. Getting wether data ( fetching data) 
-// 2. Accepting input from the city
-// 3. Displaying the data
-// 4. Persistent file storge for favourite cities
-// 5. Toggle for light and dark mode
+// Add your Own Api Key to Make this Project Functional
+
+const form = document.getElementById("input-form");
+const cityInput = document.getElementById("city-input");
+const dynamicSection = document.querySelector(".dynamic-section");
+const saveButton = document.getElementById("fav-city-button");
+const themeToggel = document.getElementById("night-mode-button");
+const tempElement = document.getElementById("temprature");
+const descElement = document.getElementById("weather-description");
+const iconElement = document.getElementById("icon");
+const city = document.getElementById("city");
+const apiKey = ""
+
+form.addEventListener("submit", async event => {
+    event.preventDefault();
+
+    const city = cityInput.value; 
+    clearError();
+
+    if(city) {
+        try{
+           const data = await getWeather(city);
+           displayWeather(data);
+        }
+        catch(error) {
+            console.error(error.message)
+            showError(error);
+        }
+    } 
+    else {
+        showError("Input can't be empty!")
+    }
+});
+
+function showError(message) {
+    const errorMessage = document.getElementById("error-message");
+    errorMessage.classList.add("error-message");
+    errorMessage.textContent = message;
+    errorMessage.style.display = 'block';
+}
+
+function clearError() {
+    const errorMessage = document.getElementById("error-message");
+    errorMessage.textContent = '';
+    errorMessage.style.display = 'none';
+}
+
+async function getWeather(city) {
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+    const response = await fetch(apiUrl);
 
 
-// const form = document.querySelector('.input-form');
-// const dynamicSection = document.querySelector('.dynamic-section');
-// const saveButton = document.querySelector('.fav-city');
-// const themeToggel = document.querySelector('.night-mode');
-// const apiKey = "362ca154ca2ba88b090edbf69c89e4f1"
+    if(!response.ok) {
+        throw new Error(`Weather data not available for ${city}.`)
+    };
+
+    const weatherData = await response.json();
+    return weatherData
+};
+
+function displayWeather(data) {
+
+// Access weather data
+    const cityName = data.name
+
+// Possible to more temprature detail(max-temp, min-temp, feels-like, etc..) dependig on use
+    const mainTemp= Math.round(data.main.temp)
+    const description = data.weather[0].description
+    const weatherId = data.weather[0].id
+
+    tempElement.textContent = `${mainTemp}℃`;
+    city.textContent = cityName;
+    descElement.textContent = description;
+    iconElement.textContent = emojiAssignment(weatherId);
+}
+
+function emojiAssignment(weatherId) {
+
+    const id = weatherId; 
+    
+    if (id >= 200 && id < 300) {
+        return '⛈️'; 
+    } else if (id >= 300 && id < 600) { 
+        return '🌧️'; 
+    } else if (id >= 600 && id < 700) { 
+        return '❄️'; 
+    } else if (id >= 700 && id < 800) { 
+        return '🌫️'; 
+    } else if (id === 800) {
+        return '🌞';  
+    } else if (id >= 801 && id < 810) { 
+        return '☁️'; 
+    } else {
+        return '❓';
+    }
+};
 
