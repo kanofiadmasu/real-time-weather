@@ -23,7 +23,7 @@ body.dark-theme {
   grid-template-rows: 1fr auto 1fr; 
   justify-content: center;
   width: 600px;
-  height: 400px;
+  min-height: 400px;
   gap: 12px;
   padding: 16px;
   border: 1px solid blue;
@@ -48,8 +48,7 @@ body.dark-theme {
     font-size: 15px;
 }
 
-.fav-container {
-    border: 1px solid red;
+#fav-container {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -65,7 +64,7 @@ body.dark-theme {
     height: 40px;
     background: white;
 }
-.fav-city-piece p {
+.fav-city-text {
     margin: 6px;
 }
 

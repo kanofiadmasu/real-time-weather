@@ -1,7 +1,7 @@
 // Add a valid API key and Base URL to make this web-app functional
 
-// Importing Storage Services functionality form storage.js
-import StorageServices from './storage.js'
+import StorageServices from './storage.js';
+import { renderFavorites } from './display.js';
 
 const storageService = new StorageServices();
 
@@ -140,14 +140,15 @@ saveButton.addEventListener("click", () => {
     const currentCity = cityElement.textContent.trim();
 
     if(currentCity) {
-        storageService.saveFavorite(currentCity);
+        const savedCity = storageService.saveFavorite(currentCity);
+        
+        if (savedCity) {
+            renderFavorites();
+        }
     }
 }); 
 
 //Displaying the saved cities
-
-showFavButton.addEventListener("click", () => {
-
-});
+document.addEventListener('DOMContentLoaded', renderFavorites);
 
 
