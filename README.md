@@ -33,7 +33,7 @@ The main purpose of building this project is not to solve a problem, rather it i
 
 # Usage 
 
-    ## You need your own api key and api Url to use it and make it functional, so add your own api key, and api Endpoint 
+### You need your own api key and api Url to use it and make it functional, so add your own api key, and api Endpoint 
     
 <img width="1265" height="99" alt="Screenshot 2025-12-07 at 12 06 38 PM" src="https://github.com/user-attachments/assets/bce4a434-24c9-41b2-b4b3-4cc0bb65735f" />
 
