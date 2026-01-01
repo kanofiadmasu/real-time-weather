@@ -52,7 +52,7 @@ The main purpose of building this project is not to solve a problem, rather it i
 
 # License
 
-Do what you want with it
+
 
 
 
